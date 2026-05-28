@@ -132,6 +132,52 @@ console.log(
 );
 ```
 
+## MCP server
+
+The package bundles a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes every Campaign Monitor API operation (140 tools) over stdio. The server is generated from the same OpenAPI spec, so it stays in lockstep with the SDK.
+
+### Run
+
+```bash
+CREATESEND_API_KEY=... npx createsend-mcp
+```
+
+…or from source:
+
+```bash
+npm run mcp
+```
+
+### Wire it into Claude Desktop
+
+`~/Library/Application Support/Claude/claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "createsend": {
+      "command": "npx",
+      "args": ["-y", "createsend-mcp"],
+      "env": { "CREATESEND_API_KEY": "your-key" }
+    }
+  }
+}
+```
+
+### Tool naming
+
+Tool names match the spec's `operationId`s (e.g. `campaigns_opens`, `lists_stats`, `subscribersconsenttotrack_add`). Inputs match the SDK options object — path params at the top level, query string under `query`, request body under `body`.
+
+### Embedding the server in your own process
+
+```ts
+import { createServer } from 'createsend/mcp';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+
+const server = createServer({ apiKey: process.env.CREATESEND_API_KEY });
+await server.connect(new StdioServerTransport());
+```
+
 ## Regenerating from the OpenAPI spec
 
 The resource classes and per-operation interfaces under `src/` are generated from `spec/createsend-openapi.yaml`.
