@@ -8,20 +8,20 @@ Examples below use **npm**. For **pnpm** or **Yarn**, swap commands as follows:
 
 | Task | npm | pnpm | Yarn |
 | --- | --- | --- | --- |
-| Add to your project | `npm install createsend` | `pnpm add createsend` | `yarn add createsend` |
+| Add to your project | `npm install @create-send/node-js` | `pnpm add @create-send/node-js` | `yarn add @create-send/node-js` |
 | Install dependencies (dev) | `npm install` | `pnpm install` | `yarn` |
 | Run a package script | `npm run <name>` | `pnpm <name>` | `yarn <name>` |
 
 ## Install
 
 ```bash
-npm install createsend
+npm install @create-send/node-js
 ```
 
 ## Usage
 
 ```ts
-import { Createsend } from 'createsend';
+import { Createsend } from '@create-send/node-js';
 
 const cs = new Createsend(process.env.CREATESEND_API_KEY);
 
