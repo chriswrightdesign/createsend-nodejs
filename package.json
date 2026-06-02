@@ -1,5 +1,5 @@
 {
-  "name": "createsend",
+  "name": "@create-send/node-js",
   "version": "0.1.0",
   "description": "Node.js SDK for the Campaign Monitor API.",
   "type": "module",
