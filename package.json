@@ -6,9 +6,6 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
-  "bin": {
-    "createsend-mcp": "./dist/mcp.mjs"
-  },
   "exports": {
     ".": {
       "import": {
@@ -18,12 +15,6 @@
       "require": {
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
-      }
-    },
-    "./mcp": {
-      "import": {
-        "types": "./dist/mcp.d.mts",
-        "default": "./dist/mcp.mjs"
       }
     }
   },
@@ -35,14 +26,10 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "tsdown src/index.ts src/mcp.ts --format esm,cjs --dts",
+    "build": "tsdown src/index.ts --format esm,cjs --dts",
     "typecheck": "tsc --noEmit",
     "generate": "tsx scripts/generate.ts",
-    "mcp": "tsx src/mcp.ts",
     "clean": "rimraf dist src/generated"
-  },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.4"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

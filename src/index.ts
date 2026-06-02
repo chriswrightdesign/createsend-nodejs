@@ -8,32 +8,22 @@ export type {
 
 // Generated re-exports — DO NOT EDIT between the markers below.
 // GENERATED:EXPORTS:START
-export { Accounts } from './accounts/accounts.js';
-export type * from './accounts/interfaces/index.js';
 export { Admins } from './admins/admins.js';
 export type * from './admins/interfaces/index.js';
-export { Anonymous } from './anonymous/anonymous.js';
-export type * from './anonymous/interfaces/index.js';
 export { BasicEmail } from './basic-email/basic-email.js';
 export type * from './basic-email/interfaces/index.js';
 export { Campaigns } from './campaigns/campaigns.js';
 export type * from './campaigns/interfaces/index.js';
 export { Clients } from './clients/clients.js';
 export type * from './clients/interfaces/index.js';
-export { Getfeedback } from './getfeedback/getfeedback.js';
-export type * from './getfeedback/interfaces/index.js';
 export { Lists } from './lists/lists.js';
 export type * from './lists/interfaces/index.js';
 export { Message } from './message/message.js';
 export type * from './message/interfaces/index.js';
 export { People } from './people/people.js';
 export type * from './people/interfaces/index.js';
-export { Query } from './query/query.js';
-export type * from './query/interfaces/index.js';
 export { Segments } from './segments/segments.js';
 export type * from './segments/interfaces/index.js';
-export { Send } from './send/send.js';
-export type * from './send/interfaces/index.js';
 export { SmartEmail } from './smart-email/smart-email.js';
 export type * from './smart-email/interfaces/index.js';
 export { Statistics } from './statistics/statistics.js';
@@ -46,8 +36,8 @@ export { Templates } from './templates/templates.js';
 export type * from './templates/interfaces/index.js';
 export { Util } from './util/util.js';
 export type * from './util/interfaces/index.js';
-export { Workflowemails } from './workflowemails/workflowemails.js';
-export type * from './workflowemails/interfaces/index.js';
+export { WorkflowEmails } from './workflow-emails/workflow-emails.js';
+export type * from './workflow-emails/interfaces/index.js';
 export { Workflows } from './workflows/workflows.js';
 export type * from './workflows/interfaces/index.js';
 // GENERATED:EXPORTS:END

@@ -13,30 +13,25 @@ import type {
 
 // Generated resource imports — DO NOT EDIT between the markers below.
 // GENERATED:IMPORTS:START
-import { Accounts } from './accounts/accounts.js';
 import { Admins } from './admins/admins.js';
-import { Anonymous } from './anonymous/anonymous.js';
 import { BasicEmail } from './basic-email/basic-email.js';
 import { Campaigns } from './campaigns/campaigns.js';
 import { Clients } from './clients/clients.js';
-import { Getfeedback } from './getfeedback/getfeedback.js';
 import { Lists } from './lists/lists.js';
 import { Message } from './message/message.js';
 import { People } from './people/people.js';
-import { Query } from './query/query.js';
 import { Segments } from './segments/segments.js';
-import { Send } from './send/send.js';
 import { SmartEmail } from './smart-email/smart-email.js';
 import { Statistics } from './statistics/statistics.js';
 import { Subscribers } from './subscribers/subscribers.js';
 import { SubscribersConsentToTrack } from './subscribers-consent-to-track/subscribers-consent-to-track.js';
 import { Templates } from './templates/templates.js';
 import { Util } from './util/util.js';
-import { Workflowemails } from './workflowemails/workflowemails.js';
+import { WorkflowEmails } from './workflow-emails/workflow-emails.js';
 import { Workflows } from './workflows/workflows.js';
 // GENERATED:IMPORTS:END
 
-const DEFAULT_BASE_URL = 'https://api.createsend.com/api/v3.3';
+const DEFAULT_BASE_URL = 'https://api.createsend.com/api/v3.4';
 const DEFAULT_USER_AGENT = 'createsend-node';
 
 const STATUS_TO_ERROR_NAME: Record<number, CreateSendErrorName> = {
@@ -75,26 +70,21 @@ export class Createsend {
 
   // Generated resource accessors — DO NOT EDIT between the markers below.
   // GENERATED:ACCESSORS:START
-  readonly accounts!: Accounts;
   readonly admins!: Admins;
-  readonly anonymous!: Anonymous;
   readonly basicEmail!: BasicEmail;
   readonly campaigns!: Campaigns;
   readonly clients!: Clients;
-  readonly getfeedback!: Getfeedback;
   readonly lists!: Lists;
   readonly message!: Message;
   readonly people!: People;
-  readonly query!: Query;
   readonly segments!: Segments;
-  readonly send!: Send;
   readonly smartEmail!: SmartEmail;
   readonly statistics!: Statistics;
   readonly subscribers!: Subscribers;
   readonly subscribersConsentToTrack!: SubscribersConsentToTrack;
   readonly templates!: Templates;
   readonly util!: Util;
-  readonly workflowemails!: Workflowemails;
+  readonly workflowEmails!: WorkflowEmails;
   readonly workflows!: Workflows;
   // GENERATED:ACCESSORS:END
 
@@ -119,26 +109,21 @@ export class Createsend {
     this.authHeader = `Basic ${credentials}`;
 
     // GENERATED:CONSTRUCT:START
-    this.accounts = new Accounts(this);
     this.admins = new Admins(this);
-    this.anonymous = new Anonymous(this);
     this.basicEmail = new BasicEmail(this);
     this.campaigns = new Campaigns(this);
     this.clients = new Clients(this);
-    this.getfeedback = new Getfeedback(this);
     this.lists = new Lists(this);
     this.message = new Message(this);
     this.people = new People(this);
-    this.query = new Query(this);
     this.segments = new Segments(this);
-    this.send = new Send(this);
     this.smartEmail = new SmartEmail(this);
     this.statistics = new Statistics(this);
     this.subscribers = new Subscribers(this);
     this.subscribersConsentToTrack = new SubscribersConsentToTrack(this);
     this.templates = new Templates(this);
     this.util = new Util(this);
-    this.workflowemails = new Workflowemails(this);
+    this.workflowEmails = new WorkflowEmails(this);
     this.workflows = new Workflows(this);
     // GENERATED:CONSTRUCT:END
   }

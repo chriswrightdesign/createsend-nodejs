@@ -2,6 +2,16 @@
 
 Node.js SDK for the [Campaign Monitor API](https://www.campaignmonitor.com/api/)
 
+## Package managers
+
+Examples below use **npm**. For **pnpm** or **Yarn**, swap commands as follows:
+
+| Task | npm | pnpm | Yarn |
+| --- | --- | --- | --- |
+| Add to your project | `npm install createsend` | `pnpm add createsend` | `yarn add createsend` |
+| Install dependencies (dev) | `npm install` | `pnpm install` | `yarn` |
+| Run a package script | `npm run <name>` | `pnpm <name>` | `yarn <name>` |
+
 ## Install
 
 ```bash
@@ -15,7 +25,7 @@ import { Createsend } from 'createsend';
 
 const cs = new Createsend(process.env.CREATESEND_API_KEY);
 
-const { data, error } = await cs.clients.pagedcampaigns({
+const { data, error } = await cs.clients.pagedCampaigns({
   id: 'CLIENT_ID',
   query: { page: 1, pageSize: 50 },
 });
@@ -30,7 +40,7 @@ The constructor accepts an API key (falls back to `CREATESEND_API_KEY`) and opti
 
 ```ts
 new Createsend(apiKey, {
-  baseUrl: 'https://api.createsend.com/api/v3.3',
+  baseUrl: 'https://api.createsend.com/api/v3.4',
   userAgent: 'my-app/1.0',
   fetch: customFetch, // optional override
 });
@@ -47,7 +57,7 @@ Each method takes a single `options` object combining path params, an optional `
 `GET /campaigns/{id}/summary.json`
 
 ```ts
-const { data, error } = await cs.campaigns.summarywithname({ id: 'CAMPAIGN_ID' });
+const { data, error } = await cs.campaigns.summaryWithName({ id: 'CAMPAIGN_ID' });
 if (data) {
   console.log(data.Recipients, data.TotalOpened, data.Clicks, data.WebVersionURL);
 }
@@ -58,7 +68,7 @@ if (data) {
 `GET /campaigns/{id}/opens.json` — `date` (lower bound) is required; pagination optional.
 
 ```ts
-const { data } = await cs.campaigns.opens({
+const { data } = await cs.campaigns.getCampaignOpens({
   id: 'CAMPAIGN_ID',
   query: {
     date: '2026-01-01',
@@ -76,7 +86,7 @@ console.log(data?.Results, data?.TotalNumberOfRecords);
 `GET /campaigns/{id}/clicks.json`
 
 ```ts
-const { data } = await cs.campaigns.clicks({
+const { data } = await cs.campaigns.getCampaignClicks({
   id: 'CAMPAIGN_ID',
   query: { date: '2026-01-01', page: 1, pageSize: 1000 },
 });
@@ -90,8 +100,8 @@ for (const click of data?.Results ?? []) {
 `GET /subscribers/{listid}/history.json` — full open/click/unsubscribe trail for one subscriber.
 
 ```ts
-const { data } = await cs.subscribers.history({
-  listid: 'LIST_ID',
+const { data } = await cs.subscribers.getSubscriberHistory({
+  listId: 'LIST_ID',
   query: { email: 'subscriber@example.com' },
 });
 console.log(data); // array of campaign/automation events
@@ -102,8 +112,8 @@ console.log(data); // array of campaign/automation events
 `POST /subscribers/{listid}.json`
 
 ```ts
-const { data, error } = await cs.subscribersConsentToTrack.add({
-  listid: 'LIST_ID',
+const { data, error } = await cs.subscribersConsentToTrack.addSubscribersConsentToTrack({
+  listId: 'LIST_ID',
   body: {
     EmailAddress: 'new@example.com',
     Name: 'Jane Example',
@@ -124,58 +134,12 @@ else console.log('subscribed:', data);
 `GET /lists/{listid}/stats.json`
 
 ```ts
-const { data } = await cs.lists.stats({ listid: 'LIST_ID' });
+const { data } = await cs.lists.getListStats({ listId: 'LIST_ID' });
 console.log(
   data?.TotalActiveSubscribers,
   data?.TotalUnsubscribes,
   data?.TotalBounces,
 );
-```
-
-## MCP server
-
-The package bundles a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes every Campaign Monitor API operation (140 tools) over stdio. The server is generated from the same OpenAPI spec, so it stays in lockstep with the SDK.
-
-### Run
-
-```bash
-CREATESEND_API_KEY=... npx createsend-mcp
-```
-
-…or from source:
-
-```bash
-npm run mcp
-```
-
-### Wire it into Claude Desktop
-
-`~/Library/Application Support/Claude/claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "createsend": {
-      "command": "npx",
-      "args": ["-y", "createsend-mcp"],
-      "env": { "CREATESEND_API_KEY": "your-key" }
-    }
-  }
-}
-```
-
-### Tool naming
-
-Tool names match the spec's `operationId`s (e.g. `campaigns_opens`, `lists_stats`, `subscribersconsenttotrack_add`). Inputs match the SDK options object — path params at the top level, query string under `query`, request body under `body`.
-
-### Embedding the server in your own process
-
-```ts
-import { createServer } from 'createsend/mcp';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-
-const server = createServer({ apiKey: process.env.CREATESEND_API_KEY });
-await server.connect(new StdioServerTransport());
 ```
 
 ## Regenerating from the OpenAPI spec

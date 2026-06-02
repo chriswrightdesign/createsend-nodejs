@@ -2,93 +2,83 @@
 import type { Response } from '../interfaces.js';
 import type { Createsend } from '../createsend.js';
 import type { SegmentsNewCreateOptions, SegmentsNewCreateResponseSuccess } from './interfaces/new-create.js';
-import type { SegmentsGetSegmentsubscriberswithlistjoineddateOptions, SegmentsGetSegmentsubscriberswithlistjoineddateResponseSuccess } from './interfaces/get-segmentsubscriberswithlistjoineddate.js';
 import type { SegmentsNewGetOptions, SegmentsNewGetResponseSuccess } from './interfaces/new-get.js';
 import type { SegmentsNewUpdateOptions, SegmentsNewUpdateResponseSuccess } from './interfaces/new-update.js';
-import type { SegmentsDeleteOptions, SegmentsDeleteResponseSuccess } from './interfaces/delete.js';
-import type { SegmentsGetSegmentsubscribersOptions, SegmentsGetSegmentsubscribersResponseSuccess } from './interfaces/get-segmentsubscribers.js';
-import type { SegmentsNewAddruleOptions, SegmentsNewAddruleResponseSuccess } from './interfaces/new-addrule.js';
-import type { SegmentsClearrulesOptions, SegmentsClearrulesResponseSuccess } from './interfaces/clearrules.js';
+import type { SegmentsDeleteSegmentOptions, SegmentsDeleteSegmentResponseSuccess } from './interfaces/delete-segment.js';
+import type { SegmentsGetSegmentSubscribersWithListJoinedDateOptions, SegmentsGetSegmentSubscribersWithListJoinedDateResponseSuccess } from './interfaces/get-segment-subscribers-with-list-joined-date.js';
+import type { SegmentsNewAddRuleOptions, SegmentsNewAddRuleResponseSuccess } from './interfaces/new-add-rule.js';
+import type { SegmentsClearRulesOptions, SegmentsClearRulesResponseSuccess } from './interfaces/clear-rules.js';
 
 export class Segments {
   constructor(private readonly client: Createsend) {}
 
   /**
-   * Segments: Newcreate
+   * Segments: NewCreate
    * POST v3.1/segments/{listid}.{format}
-   * @see POST /{version}/segments/{listid}.{format}
+   * @see POST /{version}/segments/{listId}.{format}
    */
   async newCreate(options: SegmentsNewCreateOptions): Promise<Response<SegmentsNewCreateResponseSuccess>> {
-    const { listid, body } = options;
-    return this.client.post<SegmentsNewCreateResponseSuccess>(`/segments/${listid}.json`, body);
+    const { listId, body } = options;
+    return this.client.post<SegmentsNewCreateResponseSuccess>(`/segments/${listId}.json`, body);
   }
 
   /**
-   * Segments: Getsegmentsubscriberswithlistjoineddate
-   * @see GET /{version}/segments/{segmentId}/active.{format}
-   */
-  async getSegmentsubscriberswithlistjoineddate(options: SegmentsGetSegmentsubscriberswithlistjoineddateOptions): Promise<Response<SegmentsGetSegmentsubscriberswithlistjoineddateResponseSuccess>> {
-    const { segmentId, query } = options;
-    return this.client.get<SegmentsGetSegmentsubscriberswithlistjoineddateResponseSuccess>(`/segments/${segmentId}/active.json`, { query });
-  }
-
-  /**
-   * Segments: Newget
+   * Segments: NewGet
    * GET segments/{segmentid}.{format}
-   * @see GET /{version}/segments/{segmentid}.{format}
+   * @see GET /{version}/segments/{segmentId}.{format}
    */
   async newGet(options: SegmentsNewGetOptions): Promise<Response<SegmentsNewGetResponseSuccess>> {
-    const { segmentid } = options;
-    return this.client.get<SegmentsNewGetResponseSuccess>(`/segments/${segmentid}.json`);
+    const { segmentId } = options;
+    return this.client.get<SegmentsNewGetResponseSuccess>(`/segments/${segmentId}.json`);
   }
 
   /**
-   * Segments: Newupdate
+   * Segments: NewUpdate
    * PUT v3.1/segments/{segmentid}.{format}
-   * @see PUT /{version}/segments/{segmentid}.{format}
+   * @see PUT /{version}/segments/{segmentId}.{format}
    */
   async newUpdate(options: SegmentsNewUpdateOptions): Promise<Response<SegmentsNewUpdateResponseSuccess>> {
-    const { segmentid, body } = options;
-    return this.client.put<SegmentsNewUpdateResponseSuccess>(`/segments/${segmentid}.json`, body);
+    const { segmentId, body } = options;
+    return this.client.put<SegmentsNewUpdateResponseSuccess>(`/segments/${segmentId}.json`, body);
   }
 
   /**
    * Segments: Delete
    * DELETE segments/{segmentid}.{format}
-   * @see DELETE /{version}/segments/{segmentid}.{format}
+   * @see DELETE /{version}/segments/{segmentId}.{format}
    */
-  async delete(options: SegmentsDeleteOptions): Promise<Response<SegmentsDeleteResponseSuccess>> {
-    const { segmentid } = options;
-    return this.client.delete<SegmentsDeleteResponseSuccess>(`/segments/${segmentid}.json`);
+  async deleteSegment(options: SegmentsDeleteSegmentOptions): Promise<Response<SegmentsDeleteSegmentResponseSuccess>> {
+    const { segmentId } = options;
+    return this.client.delete<SegmentsDeleteSegmentResponseSuccess>(`/segments/${segmentId}.json`);
   }
 
   /**
-   * Segments: Getsegmentsubscribers
-   * @see GET /{version}/segments/{segmentid}/active.{format}
+   * Segments: GetSegmentSubscribersWithListJoinedDate
+   * @see GET /{version}/segments/{segmentId}/active.{format}
    */
-  async getSegmentsubscribers(options: SegmentsGetSegmentsubscribersOptions): Promise<Response<SegmentsGetSegmentsubscribersResponseSuccess>> {
-    const { segmentid, query } = options;
-    return this.client.get<SegmentsGetSegmentsubscribersResponseSuccess>(`/segments/${segmentid}/active.json`, { query });
+  async getSegmentSubscribersWithListJoinedDate(options: SegmentsGetSegmentSubscribersWithListJoinedDateOptions): Promise<Response<SegmentsGetSegmentSubscribersWithListJoinedDateResponseSuccess>> {
+    const { segmentId, query } = options;
+    return this.client.get<SegmentsGetSegmentSubscribersWithListJoinedDateResponseSuccess>(`/segments/${segmentId}/active.json`, { query });
   }
 
   /**
-   * Segments: Newaddrule
+   * Segments: NewAddRule
    * POST v3.1/segments/{segmentid}/rules.{format}
-   * @see POST /{version}/segments/{segmentid}/rules.{format}
+   * @see POST /{version}/segments/{segmentId}/rules.{format}
    */
-  async newAddrule(options: SegmentsNewAddruleOptions): Promise<Response<SegmentsNewAddruleResponseSuccess>> {
-    const { segmentid, body } = options;
-    return this.client.post<SegmentsNewAddruleResponseSuccess>(`/segments/${segmentid}/rules.json`, body);
+  async newAddRule(options: SegmentsNewAddRuleOptions): Promise<Response<SegmentsNewAddRuleResponseSuccess>> {
+    const { segmentId, body } = options;
+    return this.client.post<SegmentsNewAddRuleResponseSuccess>(`/segments/${segmentId}/rules.json`, body);
   }
 
   /**
-   * Segments: Clearrules
+   * Segments: ClearRules
    * DELETE segments/{segmentid}/rules.{format}
-   * @see DELETE /{version}/segments/{segmentid}/rules.{format}
+   * @see DELETE /{version}/segments/{segmentId}/rules.{format}
    */
-  async clearrules(options: SegmentsClearrulesOptions): Promise<Response<SegmentsClearrulesResponseSuccess>> {
-    const { segmentid } = options;
-    return this.client.delete<SegmentsClearrulesResponseSuccess>(`/segments/${segmentid}/rules.json`);
+  async clearRules(options: SegmentsClearRulesOptions): Promise<Response<SegmentsClearRulesResponseSuccess>> {
+    const { segmentId } = options;
+    return this.client.delete<SegmentsClearRulesResponseSuccess>(`/segments/${segmentId}/rules.json`);
   }
 
 }
